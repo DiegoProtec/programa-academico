@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.TbPessoa" table="tb_pessoa" catalog="livraria">
+        <id name="idPessoa" type="java.lang.Integer">
+            <column name="id_pessoa" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbEndereco" class="modelo.TbEndereco" fetch="select">
+            <column name="fk_id_endereco" not-null="true" />
+        </many-to-one>
+        <property name="nomePessoa" type="string">
+            <column name="nome_pessoa" length="90" not-null="true" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="11" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="40" not-null="true" />
+        </property>
+        <set name="tbFuncionarios" inverse="true">
+            <key>
+                <column name="id_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbFuncionario" />
+        </set>
+        <set name="tbTelefones" inverse="true">
+            <key>
+                <column name="id_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbTelefone" />
+        </set>
+        <set name="tbClientes" inverse="true">
+            <key>
+                <column name="id_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbCliente" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.TbTipofuncionario" table="tb_tipofuncionario" catalog="livraria">
+        <id name="idTipoFuncionario" type="java.lang.Integer">
+            <column name="id_TipoFuncionario" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoFuncionario" type="string">
+            <column name="TipoFuncionario" length="45" not-null="true" />
+        </property>
+        <set name="tbFuncionarios" inverse="true">
+            <key>
+                <column name="fk_id_TipoFuncionario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbFuncionario" />
+        </set>
+    </class>
+</hibernate-mapping>

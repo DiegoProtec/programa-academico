@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.TbFuncionario" table="tb_funcionario" catalog="livraria">
+        <id name="idFuncionario" type="java.lang.Integer">
+            <column name="id_funcionario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbTipofuncionario" class="modelo.TbTipofuncionario" fetch="select">
+            <column name="fk_id_TipoFuncionario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tbPessoa" class="modelo.TbPessoa" fetch="select">
+            <column name="id_pessoa" not-null="true" />
+        </many-to-one>
+        <set name="tbVendas" inverse="true">
+            <key>
+                <column name="id_funcionario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbVenda" />
+        </set>
+        <set name="tbLogins" inverse="true">
+            <key>
+                <column name="id_funcionario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbLogin" />
+        </set>
+    </class>
+</hibernate-mapping>

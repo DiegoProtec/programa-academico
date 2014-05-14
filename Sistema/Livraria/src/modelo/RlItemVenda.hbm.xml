@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.RlItemVenda" table="rl_item_venda" catalog="livraria">
+        <id name="idItemVenda" type="java.lang.Integer">
+            <column name="id_itemVenda" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbVenda" class="modelo.TbVenda" fetch="select">
+            <column name="id_venda" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tbProduto" class="modelo.TbProduto" fetch="select">
+            <column name="id_produto" length="12" not-null="true" />
+        </many-to-one>
+        <property name="quantidade" type="int">
+            <column name="quantidade" not-null="true" />
+        </property>
+        <property name="precoTotal" type="double">
+            <column name="precoTotal" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.TbEndereco" table="tb_endereco" catalog="livraria">
+        <id name="idtbEndereco" type="java.lang.Integer">
+            <column name="idtb_endereco" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbTipocomplemento" class="modelo.TbTipocomplemento" fetch="select">
+            <column name="fk_idTipoComplemento" not-null="true" />
+        </many-to-one>
+        <many-to-one name="logradouros" class="modelo.Logradouros" fetch="select">
+            <column name="fk_CD_LOGRADOURO" not-null="true" />
+        </many-to-one>
+        <property name="numero" type="string">
+            <column name="numero" length="5" not-null="true" />
+        </property>
+        <set name="tbPessoas" inverse="true">
+            <key>
+                <column name="fk_id_endereco" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbPessoa" />
+        </set>
+    </class>
+</hibernate-mapping>

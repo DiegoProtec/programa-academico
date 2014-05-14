@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.Bairros" table="bairros" catalog="livraria">
+        <id name="cdBairro" type="int">
+            <column name="CD_BAIRRO" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cidades" class="modelo.Cidades" fetch="select">
+            <column name="CD_CIDADE" length="5" not-null="true" />
+        </many-to-one>
+        <property name="dsBairroNome" type="string">
+            <column name="DS_BAIRRO_NOME" length="120" not-null="true" />
+        </property>
+        <set name="logradouroses" inverse="true">
+            <key>
+                <column name="CD_BAIRRO" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Logradouros" />
+        </set>
+    </class>
+</hibernate-mapping>

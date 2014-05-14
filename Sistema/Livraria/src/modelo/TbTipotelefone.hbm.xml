@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.TbTipotelefone" table="tb_tipotelefone" catalog="livraria">
+        <id name="idTipoTelefone" type="java.lang.Integer">
+            <column name="id_tipoTelefone" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoTelefone" type="string">
+            <column name="tipoTelefone" length="45" not-null="true" />
+        </property>
+        <set name="tbTelefones" inverse="true">
+            <key>
+                <column name="fk_id_tipoTelefone" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbTelefone" />
+        </set>
+    </class>
+</hibernate-mapping>

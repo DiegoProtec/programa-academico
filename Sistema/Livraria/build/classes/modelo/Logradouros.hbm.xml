@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.Logradouros" table="logradouros" catalog="livraria">
+        <id name="cdLogradouro" type="int">
+            <column name="CD_LOGRADOURO" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bairros" class="modelo.Bairros" fetch="select">
+            <column name="CD_BAIRRO" not-null="true" />
+        </many-to-one>
+        <property name="dsLogradouroNome" type="string">
+            <column name="DS_LOGRADOURO_NOME" length="150" not-null="true" />
+        </property>
+        <property name="noLogradouroCep" type="string">
+            <column name="NO_LOGRADOURO_CEP" length="8" not-null="true" />
+        </property>
+        <property name="cdTipoLogradouros" type="int">
+            <column name="CD_TIPO_LOGRADOUROS" not-null="true" />
+        </property>
+        <set name="tbEnderecos" inverse="true">
+            <key>
+                <column name="fk_CD_LOGRADOURO" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TbEndereco" />
+        </set>
+    </class>
+</hibernate-mapping>

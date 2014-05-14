@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/06/2013 11:05:41 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.TbLogin" table="tb_login" catalog="livraria">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbFuncionario" class="modelo.TbFuncionario" fetch="select">
+            <column name="id_funcionario" not-null="true" />
+        </many-to-one>
+        <property name="usuario" type="string">
+            <column name="usuario" length="16" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="16" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
